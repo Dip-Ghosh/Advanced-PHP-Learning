@@ -19,21 +19,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware([
-    'auth', 'verified'
-]);
+Route::get('/dashboard', DashboardController::class)
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::prefix('dashboard')
-     ->middleware(['auth', 'verified'])
-     ->group(function () {
-         collect([
-             'instructor' => 'instructor.dashboard',
-             'member'     => 'member.dashboard',
-             'admin'      => 'admin.dashboard',
-         ])->each(function ($view, $uri) {
-             Route::view($uri, $view)->name("dashboard." . $uri);
-         });
-     });
+    ->middleware(['auth', 'verified'])
+    ->group(function () {
+        collect([
+            'instructor' => 'instructor.dashboard',
+            'member' => 'member.dashboard',
+            'admin' => 'admin.dashboard',
+        ])->each(function ($view, $uri) {
+            Route::view($uri, $view)
+                ->name("dashboard.$uri")
+                ->middleware(["role:$uri"]);
+        });
+    });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -41,4 +43,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
