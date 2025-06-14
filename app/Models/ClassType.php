@@ -9,10 +9,8 @@ class ClassType extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
     public function scheduledClasses()
     {
-        return $this->hasMany(ScheduledClass::class, 'type_id');
+        return $this->hasMany(ScheduledClass::class);
     }
 }

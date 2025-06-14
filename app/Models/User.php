@@ -27,12 +27,16 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-        'role' => Roles::class,
+        'role'              => Roles::class,
     ];
 
     public function scheduledClasses()
     {
         return $this->hasMany(ScheduledClass::class, 'instructor_id');
+    }
+
+    public function bookings()
+    {
+        return $this->belongsToMany(ScheduledClass::class, 'bookings');
     }
 }
