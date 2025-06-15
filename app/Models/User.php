@@ -27,7 +27,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'role'              => Roles::class,
+        'role' => Roles::class,
     ];
 
     public function scheduledClasses()

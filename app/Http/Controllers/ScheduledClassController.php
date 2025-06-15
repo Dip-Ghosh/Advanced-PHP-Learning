@@ -29,18 +29,18 @@ class ScheduledClassController extends Controller
         return view('instructor.schedule')->with('classTypes', $classTypes);
     }
 
-        public function destroy(ScheduledClass $schedule)
-        {
+    public function destroy(ScheduledClass $schedule)
+    {
 
-            if (auth()->user()->cannot('delete', $schedule)) {
-                abort(403);
-            }
-
-            ClassCanceled::dispatch($schedule);
-
-            $schedule->members()->detach();
-            $schedule->delete();
-
-            return redirect()->route('schedule.index');
+        if (auth()->user()->cannot('delete', $schedule)) {
+            abort(403);
         }
+
+        //            ClassCanceled::dispatch($schedule);
+
+        $schedule->members()->detach();
+        $schedule->delete();
+
+        return redirect()->route('schedule.index');
+    }
 }
