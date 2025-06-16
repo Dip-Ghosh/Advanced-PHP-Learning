@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
 
         // Random users
         User::factory()->count(10)->create();
+
         // Random instructors
         User::factory()->count(10)->create(['role' => 'instructor']);
     }

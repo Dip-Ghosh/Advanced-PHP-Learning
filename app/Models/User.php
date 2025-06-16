@@ -32,7 +32,7 @@ class User extends Authenticatable
         'role' => Roles::class,
     ];
 
-    public function scheduledClasses():HasMany
+    public function scheduledClasses(): HasMany
     {
         return $this->hasMany(ScheduledClass::class, 'instructor_id');
     }
