@@ -19,5 +19,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('schedule-class', function (User $user) {
             return $user->role === Roles::INSTRUCTOR;
         });
+
+        Gate::define('book-class', function (User $user) {
+            return $user->role === Roles::MEMBER;
+        });
     }
 }

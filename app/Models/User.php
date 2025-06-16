@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Enums\Roles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -30,12 +32,12 @@ class User extends Authenticatable
         'role' => Roles::class,
     ];
 
-    public function scheduledClasses()
+    public function scheduledClasses():HasMany
     {
         return $this->hasMany(ScheduledClass::class, 'instructor_id');
     }
 
-    public function bookings()
+    public function bookings(): BelongsToMany
     {
         return $this->belongsToMany(ScheduledClass::class, 'bookings');
     }
