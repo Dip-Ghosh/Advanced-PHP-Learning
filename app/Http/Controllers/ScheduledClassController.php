@@ -37,11 +37,11 @@ class ScheduledClassController extends Controller
             abort(403);
         }
 
-       ClassCancled::dispatch($schedule);
+        ClassCancled::dispatch($schedule);
 
         $schedule->members()->detach();
         $schedule->delete();
-        
+
         return redirect()->route('schedule.index');
     }
 }

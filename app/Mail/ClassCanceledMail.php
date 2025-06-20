@@ -25,7 +25,6 @@ class ClassCanceledMail extends Mailable
         );
     }
 
-
     public function content(): Content
     {
         return new Content(

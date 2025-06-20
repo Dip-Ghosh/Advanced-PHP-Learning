@@ -14,9 +14,7 @@ class ClassCancled
     use InteractsWithSockets;
     use SerializesModels;
 
-    public function __construct(public ScheduledClass $scheduledClass)
-    {}
-
+    public function __construct(public ScheduledClass $scheduledClass) {}
 
     public function broadcastOn(): array
     {

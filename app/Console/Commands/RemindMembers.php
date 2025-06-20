@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Notification;
 class RemindMembers extends Command
 {
     protected $signature = 'app:remind-members';
+
     protected $description = 'Remind Member description';
 
     public function handle()
@@ -18,6 +19,6 @@ class RemindMembers extends Command
             $query->where('date_time', '>', now());
         })->select(['id', 'email'])->get();
 
-        Notification::send($members, new RemindMemberNotification());
+        Notification::send($members, new RemindMemberNotification);
     }
 }

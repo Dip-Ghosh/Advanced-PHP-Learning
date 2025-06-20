@@ -10,16 +10,14 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 
 class EventServiceProvider extends ServiceProvider
 {
-
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
         ClassCancled::class => [
             NotifyClassCanceld::class,
-        ]
+        ],
     ];
-
 
     public function boot(): void
     {

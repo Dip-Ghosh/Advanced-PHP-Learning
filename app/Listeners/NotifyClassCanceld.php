@@ -23,9 +23,9 @@ class NotifyClassCanceld
 
         $details = compact('className', 'classDateTime');
 
-//        $members->each(function ($member) use ($details) {
-//            Mail::to($member)->send(new ClassCanceledMail($details));
-//        });
+        //        $members->each(function ($member) use ($details) {
+        //            Mail::to($member)->send(new ClassCanceledMail($details));
+        //        });
 
         NotifyClassCancelledClass::dispatch($members, $details);
     }
